@@ -49,7 +49,7 @@ export default function RootLayout({
     <html lang="en" className="dark" {...nonce ? { 'data-csp-nonce': nonce } : {}}>
       <SWRProvider>
       <body className={cn(
-        "min-h-screen bg-black/90 font-mono antialiased",
+        "min-h-screen font-mono antialiased",
         jetbrainsMono.variable
       )}>
         <div className="relative flex min-h-screen flex-col">

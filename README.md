@@ -49,4 +49,3 @@ Contributions are welcome! Please read our contributing guidelines before submit
 
 This project is licensed under the MIT License.
 
-"# agent-recipes" 

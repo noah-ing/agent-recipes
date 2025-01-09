@@ -20,7 +20,7 @@ export function WorkflowCard({
 }: WorkflowCardProps) {
   return (
     <Link href={`/recipes/${slug}`}>
-      <Card className="overflow-hidden transition-colors hover:bg-muted/50">
+      <Card className="workflow-card overflow-hidden transition-all hover:bg-muted/50 hover:border-primary/20">
         <div className="aspect-[2/1] relative">
           <Image
             src={imageSrc}
@@ -31,9 +31,9 @@ export function WorkflowCard({
         </div>
         <div className="p-6">
           <div className="flex items-center justify-between gap-4">
-            <h3 className="text-lg font-mono">{title}</h3>
+            <h3 className="text-lg font-mono text-primary">{title}</h3>
             {tag && (
-              <Badge variant="secondary" className="font-mono">
+              <Badge variant="outline" className="font-mono text-secondary">
                 {tag}
               </Badge>
             )}
