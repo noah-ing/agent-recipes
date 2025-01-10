@@ -4,6 +4,7 @@ import { cn } from "../lib/utils"
 import { SWRProvider } from '../lib/swr-config'
 import { headers } from 'next/headers'
 import type { Metadata } from 'next'
+import { Analytics } from "@vercel/analytics/react"
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
