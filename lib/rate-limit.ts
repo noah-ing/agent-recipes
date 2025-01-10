@@ -1,17 +1,47 @@
-import rateLimit from 'express-rate-limit'
-import slowDown from 'express-slow-down'
+import { NextResponse } from 'next/server'
 
-export const rateLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
-  message: 'Too many requests from this IP, please try again later.',
-  standardHeaders: true,
-  legacyHeaders: false,
-})
+const WINDOW_SIZE = 15 * 60 * 1000 // 15 minutes in milliseconds
+const MAX_REQUESTS = 100
 
-export const speedLimiter = slowDown({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  delayAfter: 50, // allow 50 requests per 15 minutes, then...
-  delayMs: 500, // begin adding 500ms of delay per request above 100
-})
+class RateLimiter {
+  private timestamps: number[] = []
 
+  isRateLimited(): boolean {
+    const now = Date.now()
+    // Remove timestamps outside the window
+    this.timestamps = this.timestamps.filter(ts => now - ts < WINDOW_SIZE)
+    
+    // Check if we've exceeded the limit
+    if (this.timestamps.length >= MAX_REQUESTS) {
+      return true
+    }
+    
+    // Add current timestamp
+    this.timestamps.push(now)
+    return false
+  }
+}
+
+// Create a single instance
+const limiter = new RateLimiter()
+
+export function checkRateLimit() {
+  if (limiter.isRateLimited()) {
+    throw new Error('Too many requests')
+  }
+}
+
+// Export a dummy function to maintain compatibility with existing code
+export const rateLimiter = (_req: Request, _res: typeof NextResponse, resolve: () => void) => {
+  try {
+    checkRateLimit()
+    resolve()
+  } catch (error) {
+    throw new Error('Too many requests')
+  }
+}
+
+export const speedLimiter = (_req: Request, _res: typeof NextResponse, resolve: () => void) => {
+  // Simple pass-through for now
+  resolve()
+}

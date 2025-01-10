@@ -1,5 +1,4 @@
-import { Together } from "@together-ai/sdk"
-import { rateLimiter, speedLimiter } from '@/lib/rate-limit'
+import { rateLimiter, speedLimiter } from '../../../lib/rate-limit'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
@@ -11,16 +10,12 @@ const messageSchema = z.object({
   }))
 })
 
-const together = new Together({
-  apiKey: process.env.TOGETHER_API_KEY
-})
-
 export async function POST(req: Request) {
   try {
     // Apply rate limiting
     await Promise.all([
-      new Promise((resolve) => rateLimiter(req, NextResponse, resolve)),
-      new Promise((resolve) => speedLimiter(req, NextResponse, resolve))
+      new Promise<void>((resolve) => rateLimiter(req, NextResponse, resolve)),
+      new Promise<void>((resolve) => speedLimiter(req, NextResponse, resolve))
     ])
 
     const body = await req.json()
@@ -28,14 +23,23 @@ export async function POST(req: Request) {
     // Validate input
     const validatedData = messageSchema.parse(body)
 
-    const response = await together.chat.create({
-      model: "togethercomputer/llama-2-70b-chat",
-      messages: validatedData.messages,
-      temperature: 0.7,
-      max_tokens: 1024,
+    const response = await fetch('https://api.together.xyz/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.TOGETHER_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: "togethercomputer/llama-2-70b-chat",
+        messages: validatedData.messages,
+        temperature: 0.7,
+        max_tokens: 1024,
+      })
     })
 
-    return new Response(JSON.stringify(response), {
+    const data = await response.json()
+
+    return new Response(JSON.stringify(data), {
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
@@ -65,4 +69,3 @@ export async function POST(req: Request) {
     }), { status: 500 })
   }
 }
-
