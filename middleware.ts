@@ -1,6 +1,15 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import crypto from 'crypto'
+
+// Simple nonce generator that doesn't rely on crypto
+function generateNonce() {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let nonce = ''
+  for (let i = 0; i < 16; i++) {
+    nonce += chars.charAt(Math.floor(Math.random() * chars.length))
+  }
+  return btoa(nonce)
+}
 
 export function middleware(request: NextRequest) {
   const response = NextResponse.next()
@@ -18,7 +27,7 @@ export function middleware(request: NextRequest) {
   headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
   
   // Content Security Policy
-  const nonce = crypto.randomBytes(16).toString('base64')
+  const nonce = generateNonce()
   headers.set(
     'Content-Security-Policy',
     [
@@ -70,4 +79,3 @@ export const config = {
     },
   ],
 }
-

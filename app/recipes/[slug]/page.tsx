@@ -8,14 +8,14 @@ import { ChevronLeft } from 'lucide-react'
 import { notFound } from "next/navigation"
 
 const workflowImages = {
-  "prompt-chaining": "https://raw.githubusercontent.com/noah-ing/LLM-pics/de75237fa3870fe0e798c3c6543612d513138e07/PromptChainingWorkflow.jpg",
-  "routing": "https://raw.githubusercontent.com/noah-ing/LLM-pics/de75237fa3870fe0e798c3c6543612d513138e07/RoutingWorkflow.jpg",
-  "coding-agent": "https://raw.githubusercontent.com/noah-ing/LLM-pics/de75237fa3870fe0e798c3c6543612d513138e07/HighLevelFlowOfCodingAgent.jpg",
-  "augmented-llm": "https://raw.githubusercontent.com/noah-ing/LLM-pics/de75237fa3870fe0e798c3c6543612d513138e07/AugmentedLLM.jpg",
-  "parallelization": "https://raw.githubusercontent.com/noah-ing/LLM-pics/de75237fa3870fe0e798c3c6543612d513138e07/ParallelizationWorkflow.jpg",
-  "orchestrator-workers": "https://raw.githubusercontent.com/noah-ing/LLM-pics/de75237fa3870fe0e798c3c6543612d513138e07/Orchestrator-workersWorkflow.jpg",
-  "evaluator-optimizer": "https://raw.githubusercontent.com/noah-ing/LLM-pics/de75237fa3870fe0e798c3c6543612d513138e07/EvalOptimizerWorkflow.jpg",
-  "autonomous-agent": "https://raw.githubusercontent.com/noah-ing/LLM-pics/de75237fa3870fe0e798c3c6543612d513138e07/AutonomousAgent.jpg",
+  "prompt-chaining": "https://raw.githubusercontent.com/noah-ing/LLM-pics/refs/heads/main/PromptChainingWorkflow_dark_mode.jpg",
+  "routing": "https://raw.githubusercontent.com/noah-ing/LLM-pics/refs/heads/main/RoutingWorkflow_dark_mode.jpg",
+  "coding-agent": "https://raw.githubusercontent.com/noah-ing/LLM-pics/refs/heads/main/HighLevelFlowOfCodingAgent_dark_mode.jpg",
+  "augmented-llm": "https://raw.githubusercontent.com/noah-ing/LLM-pics/refs/heads/main/AugmentedLLM_dark_mode.jpg",
+  "parallelization": "https://raw.githubusercontent.com/noah-ing/LLM-pics/refs/heads/main/ParallelizationWorkflow_dark_mode.jpg",
+  "orchestrator-workers": "https://raw.githubusercontent.com/noah-ing/LLM-pics/refs/heads/main/Orchestrator-workersWorkflow_dark_mode.jpg",
+  "evaluator-optimizer": "https://raw.githubusercontent.com/noah-ing/LLM-pics/refs/heads/main/EvalOptimizerWorkflow_dark_mode.jpg",
+  "autonomous-agent": "https://raw.githubusercontent.com/noah-ing/LLM-pics/refs/heads/main/AutonomousAgent_dark_mode.jpg",
 } as const;
 
 const workflows = {
