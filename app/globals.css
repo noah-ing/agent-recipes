@@ -4,48 +4,26 @@
  
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 221 83% 53%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 221 83% 53%;
-    --radius: 0.75rem;
-  }
- 
-  .dark {
-    --background: 240 10% 3.9%;
+    --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
     --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 0 0% 9%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 224 76% 48%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --radius: 0.5rem;
   }
 }
  
@@ -54,56 +32,36 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground;
     background-image: 
-      radial-gradient(at 100% 0%, rgba(var(--accent) / 0.03) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, rgba(var(--accent) / 0.03) 0px, transparent 50%);
-  }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-foreground;
+      radial-gradient(at 27% 37%, hsla(215, 98%, 61%, 0.15) 0px, transparent 0%),
+      radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 0.1) 0px, transparent 50%);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 
-@layer components {
+@layer utilities {
   .glass-panel {
-    @apply bg-background/50 backdrop-blur-lg border border-border/50 shadow-lg;
+    @apply bg-zinc-900/70 backdrop-blur-md border border-zinc-800/50 shadow-lg;
   }
-  
+
   .hover-card {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
-  }
-  
-  .interactive-element {
-    @apply transition-colors duration-200 hover:text-accent active:scale-[0.98];
+    @apply transition-all duration-300 hover:bg-zinc-800/50 hover:border-zinc-700/50;
   }
 }
 
-.text-label {
-  @apply text-foreground;
+.diagram-container {
+  @apply w-full h-full flex items-center justify-center bg-zinc-900 rounded-lg overflow-hidden;
 }
 
-/* Modern scrollbar styling */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-secondary;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-muted-foreground/50 rounded-full hover:bg-muted-foreground/70 transition-colors;
-}
-
-/* Smooth transitions for theme switching */
-:root {
-  --transition-duration: 0.3s;
-}
-
-* {
-  transition: background-color var(--transition-duration) ease,
-              border-color var(--transition-duration) ease,
-              color var(--transition-duration) ease,
-              box-shadow var(--transition-duration) ease;
+.diagram-container svg {
+  @apply w-full h-full max-w-full max-h-full;
 }
