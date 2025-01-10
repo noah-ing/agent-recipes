@@ -5,6 +5,7 @@ import { SWRProvider } from '../lib/swr-config'
 import { headers } from 'next/headers'
 import type { Metadata } from 'next'
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
