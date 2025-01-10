@@ -1,7 +1,7 @@
 import "./globals.css"
 import { JetBrains_Mono } from 'next/font/google'
-import { cn } from "@/lib/utils"
-import { SWRProvider } from '@/lib/swr-config'
+import { cn } from "../lib/utils"
+import { SWRProvider } from '../lib/swr-config'
 import { headers } from 'next/headers'
 import type { Metadata } from 'next'
 
@@ -53,12 +53,17 @@ export default function RootLayout({
       )}>
         <div className="relative flex min-h-screen flex-col">
           <main className="flex-1">
-            <div className="container relative mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div className="container relative mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
               <SWRProvider>
                 {children}
               </SWRProvider>
             </div>
           </main>
+          <footer className="w-full py-6 text-center border-t border-border">
+            <p className="text-sm text-muted-foreground">
+              Made with ❤️ by Silo-22
+            </p>
+          </footer>
         </div>
       </body>
     </html>
