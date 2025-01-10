@@ -59,6 +59,8 @@ export default function RootLayout({
               <SWRProvider>
                 {children}
               </SWRProvider>
+              <Analytics />
+              <SpeedInsights />
             </div>
           </main>
           <footer className="w-full py-6 text-center border-t border-border">
