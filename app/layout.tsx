@@ -1,4 +1,4 @@
-import "@/styles/globals.css"
+import "./globals.css"
 import { JetBrains_Mono } from 'next/font/google'
 import { cn } from "@/lib/utils"
 import { SWRProvider } from '@/lib/swr-config'
@@ -47,27 +47,20 @@ export default function RootLayout({
   const nonce = headers().get('x-nonce')
   return (
     <html lang="en" className="dark" {...nonce ? { 'data-csp-nonce': nonce } : {}}>
-      <SWRProvider>
       <body className={cn(
-        "min-h-screen font-mono antialiased",
+        "min-h-screen font-mono antialiased bg-background text-foreground",
         jetbrainsMono.variable
       )}>
         <div className="relative flex min-h-screen flex-col">
-          <header className="flex items-center justify-center py-6">
-          </header>
-          <main className="flex-1">{children}</main>
-          <footer className="flex items-center justify-center py-6">
-            <div className="text-sm text-muted-foreground">
-              Created by Silo. Inspired by Anthropic
+          <main className="flex-1">
+            <div className="container relative mx-auto py-6 px-4 sm:px-6 lg:px-8">
+              <SWRProvider>
+                {children}
+              </SWRProvider>
             </div>
-          </footer>
+          </main>
         </div>
       </body>
-      </SWRProvider>
     </html>
   )
 }
-
-
-
-import './globals.css'

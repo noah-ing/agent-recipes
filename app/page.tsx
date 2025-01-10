@@ -8,7 +8,8 @@ export default function Page() {
       title: "Prompt Chaining",
       description: "A workflow where the output of one LLM call becomes the input for the next. This sequential design allows for structured reasoning and step-by-step task completion.",
       imageSrc: "https://raw.githubusercontent.com/noah-ing/LLM-pics/refs/heads/main/PromptChainingWorkflow_dark_mode.jpg",
-      tag: "Workflow"
+      tag: "Workflow",
+      priority: true // Add priority to first image
     },
     {
       slug: "routing",
@@ -62,32 +63,33 @@ export default function Page() {
   ]
 
   return (
-    <div className="container py-10">
-      <div className="space-y-4 text-center mb-10">
-        <h1 className="text-4xl font-bold font-mono">Explore Agent Recipes</h1>
-        <p className="text-muted-foreground max-w-[700px] mx-auto">
-          Explore common agent recipes with ready to copy code to improve your LLM applications.{" "}
-          <span className="text-muted-foreground/60">
-            These agent recipes are inspired by{" "}
-            <a 
-              href="https://www.anthropic.com/research/building-effective-agents" 
-              className="underline underline-offset-4"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Anthropic's article
-            </a>
-            .
-          </span>
-        </p>
-      </div>
-      
-      <div className="grid gap-6 md:grid-cols-2">
-        {workflows.map((workflow) => (
-          <AnimatedWorkflowCard key={workflow.slug} {...workflow} />
-        ))}
+    <div className="flex min-h-screen flex-col items-center justify-center py-10 px-4">
+      <div className="max-w-7xl w-full mx-auto">
+        <div className="space-y-4 text-center mb-10">
+          <h1 className="text-4xl font-bold font-mono">Explore Agent Recipes</h1>
+          <p className="text-muted-foreground max-w-[700px] mx-auto">
+            Explore common agent recipes with ready to copy code to improve your LLM applications.{" "}
+            <span className="text-muted-foreground/60">
+              These agent recipes are inspired by{" "}
+              <a 
+                href="https://www.anthropic.com/research/building-effective-agents" 
+                className="underline underline-offset-4"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Anthropic's article
+              </a>
+              .
+            </span>
+          </p>
+        </div>
+        
+        <div className="grid gap-6 md:grid-cols-2">
+          {workflows.map((workflow) => (
+            <AnimatedWorkflowCard key={workflow.slug} {...workflow} />
+          ))}
+        </div>
       </div>
     </div>
   )
 }
-
